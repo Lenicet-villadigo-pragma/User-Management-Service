@@ -1,0 +1,37 @@
+spring:
+  webflux:
+    base-path: /users
+  r2dbc:
+    url: r2dbc:mysql://<your_url>:3306/<your_database_name>
+    username: <your_username>
+    password: <your_password>
+    properties:
+      sslMode: DISABLED
+      serverTimezone: UTC
+      useUnicode: true
+      characterEncoding: UTF-8
+    # Gestión de conexiones
+    pool:
+      initial-size: 5        # Conexiones creadas al arrancar
+      max-size: 10           # Límite máximo (ajusta según tu RAM/CPU)
+      max-idle-time: 30m     # Cierra conexiones inactivas
+      max-life-time: 60m     # Evita conexiones "zombies" muy viejas
+      validation-query: SELECT 1
+  sql:
+    init:
+      mode: always
+
+server:
+  port: 8082
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    config-url: /users/v3/api-docs/swagger-config
+    url: /users/v3/api-docs
+
+# Configuración de logging para R2DBC, borrar una vez usado
+logging:
+  level:
+    io.r2dbc.pool: DEBUG
+    org.springframework.r2dbc: DEBUG
