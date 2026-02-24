@@ -29,6 +29,10 @@ public class SubscriptionService implements ISubscriptionServicePort {
 
     @Override
     public Flux<SubscriptionStatus> subscribeUserToBootcamps(Long userId, List<Long> bootcampIds) {
+        if(bootcampIds==null || bootcampIds.isEmpty()){
+            return Flux.empty();
+        }
+
         return indicateStatusForIncomingBootcamps(userId, bootcampIds)
                 .flatMap(subscriptionStatus -> {
                     if(!subscriptionStatus.subscribed()){
@@ -66,7 +70,7 @@ public class SubscriptionService implements ISubscriptionServicePort {
                 });
     }
 
-    private Mono<List<BootcampExternalModel>> getBootcampModels( List<Long> bootcampIds) {
+    private Mono<List<BootcampExternalModel>> getBootcampModels(List<Long> bootcampIds) {
         return bootcampService.getBootcampsByIds(bootcampIds)
                 .collectSortedList(Comparator.comparing(BootcampExternalModel::startDate))
                 .onErrorComplete();

@@ -37,3 +37,10 @@ logging:
   level:
     io.r2dbc.pool: DEBUG
     org.springframework.r2dbc: DEBUG
+
+parameterized:
+  services:
+    skill:
+      base-url: http://localhost:8081/bootcamps
+  flag:
+    webclient-builder-debug: true
