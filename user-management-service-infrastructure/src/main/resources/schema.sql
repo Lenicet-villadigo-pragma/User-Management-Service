@@ -7,5 +7,6 @@ CREATE TABLE IF NOT EXISTS person (
 CREATE TABLE IF NOT EXISTS person_bootcamp (
     person_id BIGINT NOT NULL,
     bootcamp_id BIGINT NOT NULL,
+    status_subscription INT NOT NULL,
     CONSTRAINT person_bootcamp_pk PRIMARY KEY (person_id, bootcamp_id)
 );
