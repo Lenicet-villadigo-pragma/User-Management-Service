@@ -23,7 +23,8 @@ public class SubscriptionRepositoryAdapter implements ISubscriptionRepositoryPor
 
 
     public Mono<UserBootcampModel> subscribeUserToBootcamps(UserBootcampModel userBootcampModel) {
-        return subscriptionRepository.save(userBootcampMapper.fromModel(userBootcampModel))
+        UserBootcampEntity userBootcampEntity = userBootcampMapper.fromModel(userBootcampModel);
+        return subscriptionRepository.save(userBootcampEntity.setAsNew())
                 .map(userBootcampMapper::toModel)
                 .onErrorMap(throwable -> new DatabaseError("Error subscribing user to bootcamps"+throwable.getMessage()));
 
@@ -32,7 +33,7 @@ public class SubscriptionRepositoryAdapter implements ISubscriptionRepositoryPor
     @Override
     public Flux<Long> getSubscribedBootcampsByUserId(Long userId) {
         return subscriptionRepository.findAllByUserIdAndStatusSubscription(userId, STATUS_SUBSCRIPTION)
-                .map(UserBootcampEntity::bootcampId)
-                .onErrorMap(throwable -> new DatabaseError("Error retrieving subscribed bootcamps for user"+throwable.getMessage()));
+                .map(UserBootcampEntity::getBootcampId)
+                .onErrorMap(throwable -> new DatabaseError("Error retrieving subscribed bootcamps for user. "+throwable.getMessage()));
     }
 }

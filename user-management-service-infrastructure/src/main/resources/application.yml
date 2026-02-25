@@ -37,6 +37,7 @@ logging:
   level:
     io.r2dbc.pool: DEBUG
     org.springframework.r2dbc: DEBUG
+    io.r2dbc.mysql.QUERY: DEBUG
 
 parameterized:
   services:

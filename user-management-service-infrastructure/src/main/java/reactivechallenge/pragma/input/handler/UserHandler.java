@@ -16,7 +16,7 @@ public class UserHandler {
 
     public Mono<ServerResponse> subscribeToBootcamp(ServerRequest request) {
         return request.bodyToMono(SubscribeRequestDto.class)
-                .map(subscribeRequestDto ->  subscriptionServicePort
+                .flatMap(subscribeRequestDto ->  subscriptionServicePort
                         .subscribeUserToBootcamps(subscribeRequestDto.userId(), subscribeRequestDto.bootcampIds())
                         .map(SubscribeResponseDto::fromModel)
                         .collectList()

@@ -25,7 +25,7 @@ public class UserRouter {
     @Bean
     @RouterOperations({
             @RouterOperation(
-                    path = "/subscribe",
+                    path = "/bootcamp/subscribe",
                     produces = {
                             MediaType.APPLICATION_NDJSON_VALUE
                     },
@@ -51,7 +51,7 @@ public class UserRouter {
             )
     })
     public RouterFunction<ServerResponse> userRoutes(UserHandler userHandler) {
-        return route(POST("/subscribe").and(accept(MediaType.APPLICATION_NDJSON)), userHandler::subscribeToBootcamp);
+        return route(POST("/bootcamp/subscribe").and(accept(MediaType.APPLICATION_NDJSON)), userHandler::subscribeToBootcamp);
     }
 
 

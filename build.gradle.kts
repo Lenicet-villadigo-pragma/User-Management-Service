@@ -34,6 +34,7 @@ subprojects {
         dependencies {
             dependency("org.springdoc:springdoc-openapi-starter-webflux-ui:2.6.0")
             dependency("io.asyncer:r2dbc-mysql:1.0.2")
+            dependency("com.squareup.okhttp3:mockwebserver:4.12.0")
         }
     }
 

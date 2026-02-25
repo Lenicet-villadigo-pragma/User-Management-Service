@@ -8,7 +8,6 @@ import reactivechallenge.pragma.model.BootcampExternalModel;
 import reactivechallenge.pragma.spi.IBootcampServicePort;
 import reactor.core.publisher.Flux;
 
-import java.time.Duration;
 import java.util.List;
 import java.util.stream.Collectors;
 

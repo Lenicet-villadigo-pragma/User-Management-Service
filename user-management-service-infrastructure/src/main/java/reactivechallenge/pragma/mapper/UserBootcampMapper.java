@@ -25,9 +25,9 @@ public class UserBootcampMapper implements IGenericMapper<UserBootcampModel, Use
             return null;
         }
         return new UserBootcampModel(
-                entity.userId(),
-                entity.bootcampId(),
-                entity.statusSubscription()
+                entity.getUserId(),
+                entity.getBootcampId(),
+                entity.getStatusSubscription()
         );
     }
 }
