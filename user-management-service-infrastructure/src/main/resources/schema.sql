@@ -5,8 +5,11 @@ CREATE TABLE IF NOT EXISTS person (
 );
 
 CREATE TABLE IF NOT EXISTS person_bootcamp (
-    person_id BIGINT NOT NULL,
-    bootcamp_id BIGINT NOT NULL,
-    status_subscription INT NOT NULL,
-    CONSTRAINT person_bootcamp_pk PRIMARY KEY (person_id, bootcamp_id)
+    id bigint NOT NULL AUTO_INCREMENT,
+    person_id bigint NOT NULL,
+    bootcamp_id bigint NOT NULL,
+    status_subscription int NOT NULL,
+    subscribed_on datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    unsubscribed_on datetime DEFAULT NULL,
+    PRIMARY KEY (id)
 );

@@ -13,9 +13,12 @@ public class UserBootcampMapper implements IGenericMapper<UserBootcampModel, Use
             return null;
         }
         return new UserBootcampEntity(
+                model.id(),
                 model.userId(),
                 model.bootcampId(),
-                model.statusSubscription()
+                model.statusSubscription(),
+                model.subscribedOn(),
+                model.unsubscribedOn()
         );
     }
 
@@ -25,9 +28,12 @@ public class UserBootcampMapper implements IGenericMapper<UserBootcampModel, Use
             return null;
         }
         return new UserBootcampModel(
-                entity.getUserId(),
-                entity.getBootcampId(),
-                entity.getStatusSubscription()
+                entity.id(),
+                entity.userId(),
+                entity.bootcampId(),
+                entity.statusSubscription(),
+                entity.subscribedOn(),
+                entity.unsubscribedOn()
         );
     }
 }

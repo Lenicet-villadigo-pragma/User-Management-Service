@@ -44,8 +44,8 @@ public class SubscriptionService implements ISubscriptionServicePort {
 
     private Mono<SubscriptionStatus> saveSubscription(Long userId, SubscriptionStatus subscriptionStatus){
         return subscriptionRepositoryPort
-                .subscribeUserToBootcamps(new UserBootcampModel(userId, subscriptionStatus.bootcampId()
-                        , FLAG_SUBSCRIBED))
+                .subscribeUserToBootcamps(new UserBootcampModel(null,userId, subscriptionStatus.bootcampId()
+                        , FLAG_SUBSCRIBED, LocalDateTime.now(), null))
                 .thenReturn(subscriptionStatus)
                 .doOnError(e -> log.error("Error al suscribir al bootcamp con id {} para el usuario con id {}. Error: {}"
                         , subscriptionStatus.bootcampId(), userId, e.getMessage()))
